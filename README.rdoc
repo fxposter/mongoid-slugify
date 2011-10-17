@@ -2,29 +2,21 @@
 
 Add mongoid-slugify to your Gemfile:
 
-```ruby
-
-gem 'mongoid-slugify'
-
-```
+  gem 'mongoid-slugify'
 
 == Usage
 
-```ruby
+  class Product
+    include Mongoid::Document
+    include Mongoid::Slugify
 
-class Product
-  include Mongoid::Document
-  include Mongoid::Slugify
+    field :title
 
-  field :title
-  
-  private
-    def generate_slug
-      title.parameterize
-    end
-end
-
-```
+    private
+      def generate_slug
+        title.parameterize
+      end
+  end
 
 As you can see, you should make 2 things:
 
