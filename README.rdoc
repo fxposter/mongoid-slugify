@@ -1,0 +1,44 @@
+== Installation 
+
+Add mongoid-slugify to your Gemfile:
+
+```ruby
+gem 'mongoid-slugify'
+```
+
+== Usage
+
+```ruby
+class Product
+  include Mongoid::Document
+  include Mongoid::Slugify
+
+  field :title
+  
+  private
+    def generate_slug
+      title.parameterize
+    end
+end
+```
+
+As you can see, you should make 2 things:
+
+- include Mongoid::Slugify module to your model
+- provide a way to generate initial slug for your model (based on any fields, that you want)
+
+If do those - Mongooid::Slugify will save the generated slug to `slug` field of your model and will care about slug uniqueness
+(it will append "-1", "-2", etc to your slugs until it finds free one).
+
+Mongooid::Slugify gives you these additional functions:
+
+- redefines to_param method, so that it returns slug, if it's present, and model id otherwise
+- Model.(find_by_slug/find_by_slug!/find_by_slug_or_id/find_by_slug_or_id!) methods.
+  If you don't want to generate slugs for all your existing objects (so that to_param will return model ids) - you should prefer the latter two in your controllers.
+
+== Warning
+
+This library will NEVER (at least not in the nearest future) provide a way to generate initial slugs. I just don't need it.
+Don't try to add this functionality to my library.
+
+If you need all-out-of-the-box solution - look at Mongoid Slug [https://github.com/hakanensari/mongoid-slug], it's far more full featured and actively developed.
