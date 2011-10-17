@@ -3,12 +3,15 @@
 Add mongoid-slugify to your Gemfile:
 
 ```ruby
+
 gem 'mongoid-slugify'
+
 ```
 
 == Usage
 
 ```ruby
+
 class Product
   include Mongoid::Document
   include Mongoid::Slugify
@@ -20,6 +23,7 @@ class Product
       title.parameterize
     end
 end
+
 ```
 
 As you can see, you should make 2 things:
