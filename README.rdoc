@@ -1,3 +1,9 @@
+= Mongoid::Slufigy
+
+Mongoid::Slufigy is a gem, which helps you with generating slugs for your Mongoid models.
+
+{<img src="https://secure.travis-ci.org/fxposter/mongoid-slugify.png" />}[http://travis-ci.org/fxposter/mongoid-slugify]
+
 == Installation 
 
 Add mongoid-slugify to your Gemfile:
