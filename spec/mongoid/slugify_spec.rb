@@ -21,9 +21,8 @@ class Book
   include Mongoid::Document
   include Mongoid::Slugify
   field :title
-  embeds_many :subjects
   references_many :authors
-  
+
   private
     def generate_slug
       title.parameterize
@@ -39,7 +38,7 @@ class Person
   field :name
   embeds_many :relationships
   referenced_in :author, :inverse_of => :characters
-  
+
   private
     def generate_slug
       name.parameterize
