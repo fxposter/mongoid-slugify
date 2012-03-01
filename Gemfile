@@ -4,4 +4,3 @@ source 'http://rubygems.org'
 gemspec
 
 gem 'bson_ext', :platforms => :ruby
-gem 'activesupport', '~> 3.2.0'
