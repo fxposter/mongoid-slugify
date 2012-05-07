@@ -33,8 +33,9 @@ module Mongoid
         existing_slugs = appropriate_class.where(:slug => pattern, :_id.ne => _id).only(:slug).map { |record| record.slug }
         if existing_slugs.count > 0
           max_counter = existing_slugs.map { |slug| (pattern.match(slug)[1] || 0).to_i }.max
-          current_slug += "-#{max_counter + 1}"
+          current_slug << "-#{max_counter + 1}"
         end
+
         current_slug
       end
 

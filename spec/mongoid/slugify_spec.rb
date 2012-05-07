@@ -203,45 +203,43 @@ module Mongoid
       end
     end
 
-    describe ".find_by_slug" do
-      let!(:book) { Book.create(:title => "A Thousand Plateaus") }
+    describe 'ClassMethods' do
+      let(:book) { Book.create(:title => "A Thousand Plateaus") }
 
-      it "returns nil if no document is found" do
-        Book.find_by_slug(:title => "Anti Oedipus").should be_nil
+      describe ".find_by_slug" do
+        it "returns nil if no document is found" do
+          Book.find_by_slug("Anti Oedipus").should be_nil
+        end
+
+        it "returns the document if it is found" do
+          Book.find_by_slug(book.slug).should == book
+        end
       end
 
-      it "returns the document if it is found" do
-        Book.find_by_slug(book.slug).should == book
-      end
-    end
+      describe ".find_by_slug!" do
+        it "raises a Mongoid::Errors::DocumentNotFound error if no document is found" do
+          lambda {
+            Book.find_by_slug!("Anti Oedipus")
+          }.should raise_error(Mongoid::Errors::DocumentNotFound)
+        end
 
-    describe ".find_by_slug!" do
-      let!(:book) { Book.create(:title => "A Thousand Plateaus") }
-
-      it "raises a Mongoid::Errors::DocumentNotFound error if no document is found" do
-        lambda {
-          Book.find_by_slug!(:title => "Anti Oedipus")
-        }.should raise_error(Mongoid::Errors::DocumentNotFound)
+        it "returns the document when it is found" do
+          Book.find_by_slug!(book.slug).should == book
+        end
       end
 
-      it "returns the document when it is found" do
-        Book.find_by_slug!(book.slug).should == book
-      end
-    end
+      describe ".find_by_slug_or_id" do
+        it "returns nil if no document is found" do
+          Book.find_by_slug_or_id("Anti Oedipus").should be_nil
+        end
 
-    describe ".find_by_slug_or_id" do
-      let!(:book) { Book.create(:title => "A Thousand Plateaus") }
+        it "returns the document when it is found by slug" do
+          Book.find_by_slug_or_id(book.slug).should == book
+        end
 
-      it "returns nil if no document is found" do
-        Book.find_by_slug_or_id("Anti Oedipus").should be_nil
-      end
-
-      it "returns the document when it is found by slug" do
-        Book.find_by_slug_or_id(book.slug).should == book
-      end
-
-      it "returns the document when it is found by id" do
-        Book.find_by_slug_or_id(book.id).should == book
+        it "returns the document when it is found by id" do
+          Book.find_by_slug_or_id(book.id).should == book
+        end
       end
     end
   end
