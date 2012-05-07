@@ -52,7 +52,7 @@ module Mongoid
       end
 
       def find_by_slug_or_id(slug_or_id)
-        find_by_slug(slug_or_id) || where(:id => id).first
+        find_by_slug(slug_or_id) || where(:_id => slug_or_id).first
       end
 
       def find_by_slug_or_id!(slug_or_id)
