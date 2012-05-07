@@ -233,7 +233,7 @@ module Mongoid
       let!(:book) { Book.create(:title => "A Thousand Plateaus") }
 
       it "returns nil if no document is found" do
-        Book.find_by_slug_or_id(:title => "Anti Oedipus").should be_nil
+        Book.find_by_slug_or_id("Anti Oedipus").should be_nil
       end
 
       it "returns the document when it is found by slug" do

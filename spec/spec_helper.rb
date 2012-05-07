@@ -2,8 +2,7 @@ require "bundler/setup"
 Bundler.require(:default, :development)
 
 Mongoid.configure do |config|
-  name = "mongoid_slugify_test"
-  config.master = Mongo::Connection.new.db(name)
+  config.master = Mongo::Connection.new.db("mongoid_slugify_test")
 end
 
 DatabaseCleaner.strategy = :truncation
@@ -13,7 +12,7 @@ RSpec.configure do |config|
   config.before :each do
     DatabaseCleaner.start
   end
-  
+
   config.after :each do
     DatabaseCleaner.clean
   end
