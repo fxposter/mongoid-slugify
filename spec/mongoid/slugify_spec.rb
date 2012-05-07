@@ -228,5 +228,21 @@ module Mongoid
         Book.find_by_slug!(book.slug).should == book
       end
     end
+
+    describe ".find_by_slug_or_id" do
+      let!(:book) { Book.create(:title => "A Thousand Plateaus") }
+
+      it "returns nil if no document is found" do
+        Book.find_by_slug_or_id(:title => "Anti Oedipus").should be_nil
+      end
+
+      it "returns the document when it is found by slug" do
+        Book.find_by_slug_or_id(book.slug).should == book
+      end
+
+      it "returns the document when it is found by id" do
+        Book.find_by_slug_or_id(book.id).should == book
+      end
+    end
   end
 end
