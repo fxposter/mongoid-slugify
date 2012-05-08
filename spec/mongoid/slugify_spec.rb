@@ -32,6 +32,13 @@ end
 class ComicBook < Book
 end
 
+class CookBook < Book
+  private
+  def assign_slug?
+    slug.blank?
+  end
+end
+
 class Person
   include Mongoid::Document
   include Mongoid::Slugify
@@ -95,6 +102,36 @@ module Mongoid
 
       it "finds by slug" do
         Book.find_by_slug(book.to_param).should eql book
+      end
+    end
+
+    context "when assign_slug? is configured to work only when slug is empty" do
+      let(:book) do
+        CookBook.create(:title => "A Thousand Plateaus")
+      end
+
+      it "generates a slug" do
+        book.to_param.should eql "a-thousand-plateaus"
+      end
+
+      it "does not update the slug" do
+        book.title = "Anti Oedipus"
+        book.save
+        book.to_param.should eql "a-thousand-plateaus"
+      end
+
+      it "updates the slug if it's nil" do
+        book.title = "Anti Oedipus"
+        book.slug = nil
+        book.save
+        book.to_param.should eql "anti-oedipus"
+      end
+
+      it "updates the slug if it's empty" do
+        book.title = "Anti Oedipus"
+        book.slug = ""
+        book.save
+        book.to_param.should eql "anti-oedipus"
       end
     end
 
