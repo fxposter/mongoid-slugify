@@ -278,6 +278,14 @@ module Mongoid
           Book.find_by_slug_or_id(book.id).should == book
         end
       end
+
+      describe ".find_by_slug_or_id!" do
+        it "raises Mongoid::Errors::DocumentNotFound if no document is found" do
+          lambda {
+            Book.find_by_slug_or_id!("Anti Oedipus")
+          }.should raise_error(Mongoid::Errors::DocumentNotFound)
+        end
+      end
     end
   end
 end
