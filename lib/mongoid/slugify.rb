@@ -4,11 +4,19 @@ require 'active_support/concern'
 
 module Mongoid
   module Slugify
+    def self.mongoid3?
+      defined?(Mongoid::VERSION) && Gem::Version.new(Mongoid::VERSION) >= Gem::Version.new('3.0.0.rc')
+    end
+
     extend ActiveSupport::Concern
 
     included do
       field :slug
-      index :slug, :unique => true
+      if Mongoid::Slugify.mongoid3?
+        index({ :slug => 1 }, { :unique => true })
+      else
+        index :slug, :unique => true
+      end
       before_save :assign_slug, :if => :assign_slug?
     end
 
@@ -18,7 +26,7 @@ module Mongoid
       end
 
       def find_by_slug!(slug)
-        find_by_slug(slug) || raise(Mongoid::Errors::DocumentNotFound.new(self, slug))
+        find_by_slug(slug) || raise(Mongoid::Errors::DocumentNotFound.new(self, { :slug => slug }))
       end
 
       def find_by_slug_or_id(slug_or_id)
@@ -26,7 +34,7 @@ module Mongoid
       end
 
       def find_by_slug_or_id!(slug_or_id)
-        find_by_slug(slug_or_id) || where(:_id => slug_or_id).first || raise(Mongoid::Errors::DocumentNotFound.new(self, slug_or_id))
+        find_by_slug(slug_or_id) || where(:_id => slug_or_id).first || raise(Mongoid::Errors::DocumentNotFound.new(self, { :slug => slug_or_id }))
       end
     end
 

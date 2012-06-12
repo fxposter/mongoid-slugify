@@ -2,11 +2,15 @@ require "bundler/setup"
 Bundler.require(:default, :development)
 
 Mongoid.configure do |config|
-  config.master = Mongo::Connection.new.db("mongoid_slugify_test")
+  if Mongoid::Slugify.mongoid3?
+    config.sessions[:default] = { :database => 'mongoid_slugify_test', :hosts => ['localhost:27017'] }
+  else
+    config.master = Mongo::Connection.new.db('mongoid_slugify_test')
+  end
 end
 
 DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.orm = :mongoid
+DatabaseCleaner.orm = Mongoid::Slugify.mongoid3? ? :moped : :mongoid
 
 RSpec.configure do |config|
   config.before :each do

@@ -1,3 +1,8 @@
+language: ruby
+install: 'bundle install && bundle exec rake appraisal:install'
+gemfile:
+  - gemfiles/mongoid2.gemfile
+  - gemfiles/mongoid3.gemfile
 rvm:
   - 1.8.7
   - 1.9.2
