@@ -4,11 +4,13 @@ Mongoid::Slufigy is a gem, which helps you with generating slugs for your Mongoi
 
 {<img src="https://secure.travis-ci.org/fxposter/mongoid-slugify.png" />}[http://travis-ci.org/fxposter/mongoid-slugify]
 
-== Installation 
+== Installation
 
-Add mongoid-slugify to your Gemfile:
+Add Mongoid::Slufigy to your Gemfile:
 
   gem 'mongoid-slugify'
+
+Since 0.1.0 Mongoid::Slufigy supports both Mongoid 2.x and 3.x releases (since 3.0.0.rc).
 
 == Usage
 
@@ -19,9 +21,9 @@ Add mongoid-slugify to your Gemfile:
     field :title
 
     private
-      def generate_slug
-        title.parameterize
-      end
+    def generate_slug
+      title.parameterize
+    end
   end
 
 As you can see, you should make 2 things:
