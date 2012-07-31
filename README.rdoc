@@ -1,16 +1,16 @@
-= Mongoid::Slufigy
+= Mongoid::Slugify
 
-Mongoid::Slufigy is a gem, which helps you with generating slugs for your Mongoid models.
+Mongoid::Slugify is a gem, which helps you with generating slugs for your Mongoid models.
 
 {<img src="https://secure.travis-ci.org/fxposter/mongoid-slugify.png" />}[http://travis-ci.org/fxposter/mongoid-slugify]
 
 == Installation
 
-Add Mongoid::Slufigy to your Gemfile:
+Add Mongoid::Slugify to your Gemfile:
 
   gem 'mongoid-slugify'
 
-Since 0.1.0 Mongoid::Slufigy supports both Mongoid 2.x and 3.x releases (since 3.0.0.rc).
+Since 0.1.0 Mongoid::Slugify supports both Mongoid 2.x and 3.x releases (since 3.0.0.rc).
 
 == Usage
 
@@ -31,7 +31,7 @@ As you can see, you should make 2 things:
 - include Mongoid::Slugify module to your model
 - provide a way to generate initial slug for your model (based on any fields, that you want)
 
-If do those - Mongooid::Slugify will save the generated slug to `slug` field of your model and will care about slug uniqueness
+If do those - Mongoid::Slugify will save the generated slug to `slug` field of your model and will care about slug uniqueness
 (it will append "-1", "-2", etc to your slugs until it finds free one).
 
 Mongooid::Slugify gives you these additional functions:
