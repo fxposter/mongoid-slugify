@@ -1,5 +1,7 @@
 language: ruby
-install: 'bundle install && bundle exec rake appraisal:install'
+before_script:
+  - bundle install
+  - bundle exec rake appraisal:install
 services: mongodb
 gemfile:
   - gemfiles/mongoid2.gemfile
