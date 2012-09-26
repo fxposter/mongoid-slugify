@@ -22,3 +22,5 @@ matrix:
       gemfile: gemfiles/mongoid3.gemfile
     - rvm: ree
       gemfile: gemfiles/mongoid3.gemfile
+    - rvm: 1.9.2
+      gemfile: gemfiles/mongoid3.gemfile
