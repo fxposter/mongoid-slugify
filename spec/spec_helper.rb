@@ -1,3 +1,5 @@
+p ENV['BUNDLE_GEMFILE']
+
 require "bundler/setup"
 Bundler.require(:default, :development)
 
