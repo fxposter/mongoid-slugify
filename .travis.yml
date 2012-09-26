@@ -13,3 +13,13 @@ rvm:
   - jruby-18mode
   - jruby-19mode
   - ree
+matrix:
+  exclude:
+    - rvm: 1.8.7
+      gemfile: gemfiles/mongoid3.gemfile
+    - rvm: rbx-18mode
+      gemfile: gemfiles/mongoid3.gemfile
+    - rvm: jruby-18mode
+      gemfile: gemfiles/mongoid3.gemfile
+    - rvm: ree
+      gemfile: gemfiles/mongoid3.gemfile
