@@ -2,7 +2,6 @@
 
 source "http://rubygems.org"
 
-gem "mongoid", "~> 2.0"
-gem "bson_ext", :platforms => :ruby
+gem "mongoid", "~> 4.0"
 
 gemspec :path => "../"

@@ -4,5 +4,9 @@ appraise 'mongoid2' do
 end
 
 appraise 'mongoid3' do
-  gem 'mongoid', '~> 3.0.0.rc'
+  gem 'mongoid', '~> 3.0'
+end
+
+appraise 'mongoid4' do
+  gem 'mongoid', '~> 4.0'
 end

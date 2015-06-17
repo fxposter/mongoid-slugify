@@ -15,8 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Mongoid::Slugify::VERSION
 
-  gem.add_runtime_dependency 'activesupport', '~> 3.0'
-  gem.add_runtime_dependency 'mongoid', '>= 2.0', '< 4.0'
+  gem.add_runtime_dependency 'activesupport', '>= 3.0', '< 5.0'
+  gem.add_runtime_dependency 'mongoid', '>= 2.0', '< 5.0'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'

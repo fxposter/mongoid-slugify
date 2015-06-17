@@ -12,7 +12,7 @@ Add Mongoid::Slugify to your Gemfile:
 gem 'mongoid-slugify'
 ```
 
-Since 0.1.0 Mongoid::Slugify supports both Mongoid 2.x and 3.x releases.
+Since 0.1.0 Mongoid::Slugify supports both Mongoid 2.x, 3.x and 4.x releases.
 
 ## Usage
 

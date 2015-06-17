@@ -4,15 +4,15 @@ require 'active_support/concern'
 
 module Mongoid
   module Slugify
-    def self.mongoid3?
-      defined?(Mongoid::VERSION) && Gem::Version.new(Mongoid::VERSION) >= Gem::Version.new('3.0.0.rc')
+    def self.at_least_mongoid3?
+      defined?(Mongoid::VERSION) && Gem::Version.new(Mongoid::VERSION) >= Gem::Version.new('3.0.0')
     end
 
     extend ActiveSupport::Concern
 
     included do
       field :slug
-      if Mongoid::Slugify.mongoid3?
+      if Mongoid::Slugify.at_least_mongoid3?
         index({ :slug => 1 }, { :unique => true })
       else
         index :slug, :unique => true
