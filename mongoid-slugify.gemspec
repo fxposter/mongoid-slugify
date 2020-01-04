@@ -16,10 +16,11 @@ Gem::Specification.new do |gem|
   gem.version       = Mongoid::Slugify::VERSION
 
   gem.add_runtime_dependency 'activesupport', '>= 3.0', '< 5.0'
-  gem.add_runtime_dependency 'mongoid', '>= 2.0', '< 5.0'
+  gem.add_runtime_dependency 'mongoid', '>= 2.0', '< 6.0'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'database_cleaner'
+
   gem.add_development_dependency 'appraisal'
 end
